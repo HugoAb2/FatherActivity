@@ -10,7 +10,7 @@ class Node {
 
 private:
     string symptom;
-    vector<Node*> children;
+    Node* children;
 
 public:
     Node(string& value);
@@ -19,7 +19,7 @@ public:
 
     string getSymptom();
 
-    vector<Node*>& getChildren();
+    Node* getChildren();
 
 };
 

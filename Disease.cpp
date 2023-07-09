@@ -12,10 +12,10 @@ void Disease::setCode(int code) {
     Disease::code = code;
 }
 
-const vector<bool> &Disease::getSymptoms() const {
+vector<bool> &Disease::getSymptoms() {
     return symptoms;
 }
 
-void Disease::setSymptoms(const vector<bool> &symptoms) {
+void Disease::setSymptoms(vector<bool> &symptoms) {
     Disease::symptoms = symptoms;
 }

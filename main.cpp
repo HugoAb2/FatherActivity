@@ -21,6 +21,6 @@ int main() {
 
     DecisionTree tree;
     tree.buildTree(symptomsN);
-    tree.runTree(&dataset);
+    tree.runTree(dataset);
 
 }

@@ -11,16 +11,16 @@ class DecisionTree {
 private:
     Node* root;
     Node* buildRecTree(vector<string>& vetor, int& indice);
-    void printRecTree(Node* node, int nivel);
+    void printRecTree(Node* node, int level);
 
 
 public:
 
     void buildTree(vector<string>& vetor);
 
-    void runTree(vector<Disease>* dataset);
+    void runTree(vector<Disease>& dataset);
 
-    void runNode(Node *node, vector<struct Disease> *pVector);
+    void runNode(Node *node, vector<Disease> &pVector, int sIndicator);
 
     void printTree();
 

@@ -19,9 +19,9 @@ public:
 
     void setCode(int code);
 
-    const vector<bool> &getSymptoms() const;
+    vector<bool> &getSymptoms();
 
-    void setSymptoms(const vector<bool> &symptoms);
+    void setSymptoms(vector<bool> &symptoms);
 };
 
 

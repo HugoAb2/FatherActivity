@@ -24,28 +24,33 @@ Node* DecisionTree::buildRecTree(vector<string>& vetor, int& indice) {
     return node;
 }
 
-void DecisionTree :: runTree(vector<Disease>* dataset){
-    runNode(root, dataset);
+void DecisionTree :: runTree(vector<Disease>& dataset){
+    runNode(root, dataset, 0);
 }
 
-void DecisionTree :: runNode(Node* node, vector<Disease>* dataset){
+void DecisionTree :: runNode(Node* node, vector<Disease>& dataset, int sIndicator){
     if (node == nullptr) {
         return;
     }
 
     cout << node->getSymptom() << " (s/n): ";
-    char resposta;
-    cin >> resposta;
+    char answer;
+    cin >> answer;
 
-    if (resposta == 's') {
-        //for (int i=0;i<dataset->size();i++) {
-        //    if (dataset->at(i).getSymptoms()[i]){
-        //        cout << i <<" ";
-        //    }
-        //}
-        runNode(node->getChildren()[0], nullptr);
+    if (answer == 's') {
+        for (int i=dataset.size()-1;i>=0;i--) {
+            if (!dataset.at(i).getSymptoms()[sIndicator]){
+                dataset.erase(dataset.begin() +i);
+            }
+        }
+        runNode(node->getChildren(), dataset, sIndicator+1);
     } else {
-        runNode(node->getChildren()[0], nullptr);
+        for (int i=dataset.size()-1;i>=0;i--) {
+            if (dataset.at(i).getSymptoms()[sIndicator]){
+                dataset.erase(dataset.begin() +i);
+            }
+        }
+        runNode(node->getChildren(), dataset, sIndicator+1);
     }
 }
 
@@ -54,18 +59,18 @@ void DecisionTree::printTree(){
     printRecTree(root, 0);
 }
 
-void DecisionTree::printRecTree(Node* node, int nivel){
+void DecisionTree::printRecTree(Node* node, int level){
     if (node == nullptr) {
         return;
     }
 
-    for (int i = 0; i < nivel; i++) {
+    for (int i = 0; i < level; i++) {
         std::cout << "  ";
     }
 
     std::cout << node->getSymptom() << std::endl;
 
-    for (Node* child : node->getChildren()) {
-        printRecTree(child, nivel + 1);
+    while (node->getChildren()) {
+        printRecTree(node->getChildren(), level + 1);
     }
 }

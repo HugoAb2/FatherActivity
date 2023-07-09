@@ -4,19 +4,20 @@
 #include "Node.h"
 
 Node::Node(string& value) : symptom(value){
-
+    children = nullptr;
 }
 
 void Node::addChild(Node* child) {
-    children.push_back(child);
+    this->children = child;
 }
 
 string Node::getSymptom(){
     return "Are you feeling " + symptom + "?";
 }
 
-vector<Node*>& Node::getChildren() {
-    return children;
+Node* Node::getChildren() {
+    if (children != nullptr) return children;
+    else return nullptr;
 }
 
 #endif
