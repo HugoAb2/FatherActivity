@@ -7,6 +7,10 @@
 using namespace std;
 
 int main() {
+    // CodDic        Dia         turno            Nome              matricula
+    // QXD0010 | terca-quarta  | manha | Hugo Rodrigues Amadeu    | 422631
+    // QXD0010 | segunda-terca | tarde | Elienai Ribeiro da Silva | 416808
+
     //recebendo o documento e armazenando para manipulacao em c++
     string path = R"(C:\Users\hugoc\Documents\Software Engenier\ED\FatherActivity\)";
     string docName = "SintomasMenor.txt";

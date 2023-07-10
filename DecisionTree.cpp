@@ -33,11 +33,11 @@ void DecisionTree :: runNode(Node* node, vector<Disease>& dataset, int sIndicato
         return;
     }
 
-    cout << node->getSymptom() << " (s/n): ";
-    char answer;
+    cout << node->getSymptom();
+    bool answer;
     cin >> answer;
 
-    if (answer == 's') {
+    if (answer) {
         for (int i=dataset.size()-1;i>=0;i--) {
             if (!dataset.at(i).getSymptoms()[sIndicator]){
                 dataset.erase(dataset.begin() +i);
