@@ -26,7 +26,7 @@ int main() {
 
     //criando arvore, percorrendo e atualizando resultados em dataset
     DecisionTree tree;
-    tree.buildTree(symptomsN);
+    tree.buildTree(symptomsN, dataset);
     tree.runTree(dataset);
 
     //verificando e printando resultados em dataset

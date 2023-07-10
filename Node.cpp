@@ -3,7 +3,7 @@
 
 #include "Node.h"
 
-Node::Node(string& symptom) : symptom(symptom){
+Node::Node(string& symptom, vector<Disease> dataset) : symptom(symptom), dataset(dataset){
     trueChild = nullptr;
     falseChild = nullptr;
 }
@@ -24,8 +24,13 @@ string Node::symptomMessage(){
     return "Are you feeling " + symptom + "? ";
 }
 
-Node* Node::getChildren() {
+Node* Node::getTrueChild() {
     if (trueChild != nullptr) return trueChild;
+    else return nullptr;
+}
+
+Node* Node::getFalseChild() {
+    if (falseChild != nullptr) return falseChild;
     else return nullptr;
 }
 

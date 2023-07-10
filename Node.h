@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include "Disease.h"
 
 using namespace std;
 
@@ -10,11 +11,14 @@ class Node {
 
 private:
     string symptom;
+    vector<Disease> dataset;
     Node* trueChild;
     Node* falseChild;
 
 public:
-    Node(string& symptom);
+    Node(string& symptom, vector<Disease> dataset);
+
+    vector<Disease> getDataset();
 
     void addTrueChild(Node* child);
 
@@ -24,7 +28,9 @@ public:
 
     string symptomMessage();
 
-    Node* getChildren();
+    Node* getTrueChild();
+
+    Node* getFalseChild();
 
 };
 

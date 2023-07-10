@@ -1,24 +1,24 @@
 #include "DecisionTree.h"
 #include <iostream>
 
-void DecisionTree::buildTree(vector<string>& symptomsNames) {
+void DecisionTree::buildTree(vector<string>& symptomsNames, vector<Disease>& dataset) {
     int indice = 0;
-    root = buildRecTree(symptomsNames, indice);
+    root = buildRecTree(symptomsNames, dataset,indice);
 }
 
-Node* DecisionTree::buildRecTree(vector<string>& symptomsNames, int& indice) {
+Node* DecisionTree::buildRecTree(vector<string>& symptomsNames, vector<Disease> dataset,int& indice) {
     if (indice >= symptomsNames.size()) {
         return nullptr;
     }
 
-    Node* node = new Node(symptomsNames[indice]);
+    Node* node = new Node(symptomsNames[indice], dataset);
 
     while (indice + 1 < symptomsNames.size() && symptomsNames[indice + 1] != node->getSymptom()) {
         indice++;
-        Node* trueChild = buildRecTree(symptomsNames, indice);
+        Node* trueChild = buildRecTree(symptomsNames, dataset,indice);
         if (trueChild != nullptr) {
             node->addTrueChild(trueChild);
-            Node* falseChild = new Node(symptomsNames[indice]);
+            Node* falseChild = new Node(symptomsNames[indice], dataset);
             node->addFalseChild(falseChild);
         }
     }
@@ -45,14 +45,14 @@ void DecisionTree :: runNode(Node* node, vector<Disease>& dataset, int sIndicato
                 dataset.erase(dataset.begin() +i);
             }
         }
-        runNode(node->getChildren(), dataset, sIndicator+1);
+        runNode(node->getTrueChild(), dataset, sIndicator + 1);
     } else {
         for (int i=dataset.size()-1;i>=0;i--) {
             if (dataset.at(i).getSymptoms()[sIndicator]){
                 dataset.erase(dataset.begin() +i);
             }
         }
-        runNode(node->getChildren(), dataset, sIndicator+1);
+        runNode(node->getTrueChild(), dataset, sIndicator + 1);
     }
 }
 
@@ -72,7 +72,7 @@ void DecisionTree::printRecTree(Node* node, int level){
 
     std::cout << node->getSymptom() << std::endl;
 
-    while (node->getChildren()) {
-        printRecTree(node->getChildren(), level + 1);
+    while (node->getTrueChild()) {
+        printRecTree(node->getTrueChild(), level + 1);
     }
 }
