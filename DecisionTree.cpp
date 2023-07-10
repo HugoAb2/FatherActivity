@@ -15,15 +15,32 @@ Node* DecisionTree::buildRecTree(vector<string>& symptomsNames, vector<Disease> 
 
     while (indice + 1 < symptomsNames.size() && symptomsNames[indice + 1] != node->getSymptom()) {
         indice++;
-        Node* trueChild = buildRecTree(symptomsNames, dataset,indice);
+        Node* trueChild = buildRecTree(symptomsNames, updateDataset(true, dataset, indice),indice);
         if (trueChild != nullptr) {
             node->addTrueChild(trueChild);
-            Node* falseChild = new Node(symptomsNames[indice], dataset);
+            Node* falseChild = new Node(symptomsNames[indice], updateDataset(false, dataset, indice));
             node->addFalseChild(falseChild);
         }
     }
 
     return node;
+}
+
+vector<Disease> DecisionTree::updateDataset(bool choice, vector<Disease> dataset, int sIndicator) {
+    if (choice) {
+        for (int i=dataset.size()-1;i>=0;i--) {
+            if (!dataset.at(i).getSymptoms()[sIndicator]){
+                dataset.erase(dataset.begin() +i);
+            }
+        }
+    } else {
+        for (int i=dataset.size()-1;i>=0;i--) {
+            if (dataset.at(i).getSymptoms()[sIndicator]){
+                dataset.erase(dataset.begin() +i);
+            }
+        }
+    }
+    return dataset;
 }
 
 void DecisionTree :: runTree(vector<Disease>& dataset){

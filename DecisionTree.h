@@ -11,6 +11,7 @@ class DecisionTree {
 private:
     Node* root;
     Node* buildRecTree(vector<string>& symptomsNames, vector<Disease> dataset,int& indice);
+    vector<Disease> updateDataset(bool choice, vector<Disease> dataset, int sIndicator);
     void runNode(Node *node, vector<Disease> &pVector, int sIndicator);
     void printRecTree(Node* node, int level);
 
