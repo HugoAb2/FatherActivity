@@ -1,21 +1,21 @@
 #include "DecisionTree.h"
 #include <iostream>
 
-void DecisionTree::buildTree(vector<string>& vetor) {
+void DecisionTree::buildTree(vector<string>& symptomsNames) {
     int indice = 0;
-    root = buildRecTree(vetor, indice);
+    root = buildRecTree(symptomsNames, indice);
 }
 
-Node* DecisionTree::buildRecTree(vector<string>& vetor, int& indice) {
-    if (indice >= vetor.size()) {
+Node* DecisionTree::buildRecTree(vector<string>& symptomsNames, int& indice) {
+    if (indice >= symptomsNames.size()) {
         return nullptr;
     }
 
-    Node* node = new Node(vetor[indice]);
+    Node* node = new Node(symptomsNames[indice]);
 
-    while (indice + 1 < vetor.size() && vetor[indice + 1] != node->getSymptom()) {
+    while (indice + 1 < symptomsNames.size() && symptomsNames[indice + 1] != node->getSymptom()) {
         indice++;
-        Node* child = buildRecTree(vetor, indice);
+        Node* child = buildRecTree(symptomsNames, indice);
         if (child != nullptr) {
             node->addChild(child);
         }
@@ -33,7 +33,7 @@ void DecisionTree :: runNode(Node* node, vector<Disease>& dataset, int sIndicato
         return;
     }
 
-    cout << node->getSymptom();
+    cout << node->symptomMessage();
     bool answer;
     cin >> answer;
 

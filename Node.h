@@ -13,11 +13,13 @@ private:
     Node* children;
 
 public:
-    Node(string& value);
+    Node(string& symptom);
 
     void addChild(Node* child);
 
     string getSymptom();
+
+    string symptomMessage();
 
     Node* getChildren();
 

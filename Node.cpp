@@ -3,7 +3,7 @@
 
 #include "Node.h"
 
-Node::Node(string& value) : symptom(value){
+Node::Node(string& symptom) : symptom(symptom){
     children = nullptr;
 }
 
@@ -12,7 +12,11 @@ void Node::addChild(Node* child) {
 }
 
 string Node::getSymptom(){
-    return "Are you feeling " + symptom + "?";
+    return symptom;
+}
+
+string Node::symptomMessage(){
+    return "Are you feeling " + symptom + "? ";
 }
 
 Node* Node::getChildren() {
