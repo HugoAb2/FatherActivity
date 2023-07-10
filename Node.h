@@ -10,12 +10,15 @@ class Node {
 
 private:
     string symptom;
-    Node* children;
+    Node* trueChild;
+    Node* falseChild;
 
 public:
     Node(string& symptom);
 
-    void addChild(Node* child);
+    void addTrueChild(Node* child);
+
+    void addFalseChild(Node* child);
 
     string getSymptom();
 

@@ -4,11 +4,16 @@
 #include "Node.h"
 
 Node::Node(string& symptom) : symptom(symptom){
-    children = nullptr;
+    trueChild = nullptr;
+    falseChild = nullptr;
 }
 
-void Node::addChild(Node* child) {
-    this->children = child;
+void Node::addTrueChild(Node* child) {
+    this->trueChild = child;
+}
+
+void Node::addFalseChild(Node* child) {
+    this->falseChild = child;
 }
 
 string Node::getSymptom(){
@@ -20,7 +25,7 @@ string Node::symptomMessage(){
 }
 
 Node* Node::getChildren() {
-    if (children != nullptr) return children;
+    if (trueChild != nullptr) return trueChild;
     else return nullptr;
 }
 

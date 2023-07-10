@@ -15,9 +15,11 @@ Node* DecisionTree::buildRecTree(vector<string>& symptomsNames, int& indice) {
 
     while (indice + 1 < symptomsNames.size() && symptomsNames[indice + 1] != node->getSymptom()) {
         indice++;
-        Node* child = buildRecTree(symptomsNames, indice);
-        if (child != nullptr) {
-            node->addChild(child);
+        Node* trueChild = buildRecTree(symptomsNames, indice);
+        if (trueChild != nullptr) {
+            node->addTrueChild(trueChild);
+            Node* falseChild = new Node(symptomsNames[indice]);
+            node->addFalseChild(falseChild);
         }
     }
 
