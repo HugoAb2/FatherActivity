@@ -14,9 +14,16 @@ private:
     vector<Disease> dataset;
     Node* trueChild;
     Node* falseChild;
+    vector<int> results;
 
 public:
     Node(string& symptom, vector<Disease> dataset);
+
+    void addResultsVector(vector<int> resultVec);
+
+    vector<int> getResults();
+
+    void addResult(int dCode);
 
     vector<Disease> getDataset();
 
