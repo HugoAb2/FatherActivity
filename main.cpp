@@ -27,15 +27,15 @@ int main() {
     //criando arvore, percorrendo e atualizando resultados em dataset
     DecisionTree tree;
     tree.buildTree(symptomsN, dataset);
-    Node* answerNode = tree.runTree(dataset);
-    vector<int> answers = answerNode->getResults();
+    vector<int> answers;
+    tree.runTree(dataset, answers);
 
     //verificando e printando resultados em dataset
     if (answers.empty()) cout << "No diseases match" << endl;
     else{
         vector<string> diagnostics;
         for(int code : answers){
-            string answer = diseasesN[code];
+            string answer = diseasesN[code-1];
             if (find(diagnostics.begin(), diagnostics.end(), answer) == diagnostics.end()) {
                 diagnostics.push_back(answer);
             }

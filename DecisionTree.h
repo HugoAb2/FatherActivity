@@ -12,7 +12,7 @@ private:
     Node* root;
     Node* buildRecTree(vector<string>& symptomsNames, vector<Disease> dataset,int indice);
     vector<Disease> updateDataset(bool choice, vector<Disease> dataset, int sIndicator);
-    Node* runNode(Node *node, vector<Disease> pVector, int sIndicator);
+    Node* runNode(Node *node, int sIndicator, vector<int>& answers);
     void printRecTree(Node* node, int level);
 
 
@@ -20,7 +20,7 @@ public:
 
     void buildTree(vector<string>& symptomsNames, vector<Disease>& dataset);
 
-    Node* runTree(vector<Disease>& dataset);
+    void runTree(vector<Disease>& dataset, vector<int>& answers);
 
     void printTree();
 

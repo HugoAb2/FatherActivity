@@ -51,12 +51,16 @@ vector<Disease> DecisionTree::updateDataset(bool choice, vector<Disease> dataset
     return dataset;
 }
 
-Node* DecisionTree :: runTree(vector<Disease>& dataset){
-    return runNode(root, dataset, 0);
+void DecisionTree :: runTree(vector<Disease>& dataset, vector<int>& answers){
+    runNode(root, 0, answers);
+
 }
 
-Node* DecisionTree :: runNode(Node* node, vector<Disease> dataset, int sIndicator){
+Node* DecisionTree :: runNode(Node* node, int sIndicator, vector<int>& answers){
     if (node->getSymptom() == "Result") {
+        for (int dCode : node->getResults()) {
+            answers.push_back(dCode);
+        }
         return node;
     }
 
@@ -65,9 +69,9 @@ Node* DecisionTree :: runNode(Node* node, vector<Disease> dataset, int sIndicato
     cin >> answer;
 
     if (answer) {
-        runNode(node->getTrueChild(), node->getDataset(), sIndicator + 1);
+        runNode(node->getTrueChild(), sIndicator + 1, answers);
     } else {
-        runNode(node->getFalseChild(), node->getDataset(), sIndicator + 1);
+        runNode(node->getFalseChild(), sIndicator + 1, answers);
     }
 }
 
